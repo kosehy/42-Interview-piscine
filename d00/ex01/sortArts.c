@@ -10,29 +10,6 @@ void    sortArts(struct s_art **arts)
         swap(&arts[i], &arts[index]);
         ++i;
     }
-    // index = findSmallest(arts, 0);
-    // swap(&arts[0], &arts[index]);
-    // while (arts[i])
-    // {
-    //     printf("%s => %d\n", arts[i]->name, arts[i]->price);
-    //     ++i;
-    // }
-    // i = 0;
-    // index = findSmallest(arts, 1);
-    // swap(&arts[1], &arts[index]);
-    // while (arts[i])
-    // {
-    //     printf("%s => %d\n", arts[i]->name, arts[i]->price);
-    //     ++i;
-    // }
-    // i = 0;
-    // index = findSmallest(arts, 2);
-    // swap(&arts[2], &arts[index]);
-    // while (arts[i])
-    // {
-    //     printf("%s => %d\n", arts[i]->name, arts[i]->price);
-    //     ++i;
-    // }
     i = 0;
     FILE *fp;
     fp = fopen("./test.txt","w");
@@ -51,13 +28,10 @@ int    findSmallest(struct s_art **arts, int index)
     char *tmp_str = arts[index]->name;
     for (int i = index; arts[i]; ++i)
     {
-        // printf("tmp: %s\n", tmp->name);
-        // printf("arts[%d]: %s\n", i, arts[i]->name);
         if (strcmp(tmp_str, arts[i]->name) > 0)
         {
             tmp_str = arts[i]->name;
             smallest = i;
-            // printf("changed\n");
         }
     }
     return (smallest);

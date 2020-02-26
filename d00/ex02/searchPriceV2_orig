@@ -1,0 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   searchPriceV2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sko <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/25 14:49:52 by sko               #+#    #+#             */
+/*   Updated: 2020/02/25 14:49:53 by sko              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "header.h"
+#include <string.h>
+#include <stdio.h>
+
+int searchIndex(struct s_art **arts, char *name)
+{
+    int i = 0;
+    while (arts[i])
+    {
+        if (strcmp(arts[i]->name, name) == 0)
+            return (i);
+        ++i;
+    }
+    return (-1);
+}
+
+int searchPrice(struct s_art **arts, int n, char *name)
+{
+    int index = searchIndex(arts, name);
+    if (index == -1)
+        return (-1);
+    int high = n - 1;
+    int low = high / 2;
+    printf("Need to find : %d\n", index);
+    printf("start the searching!\n");
+    // printf("cur : %d\n", cur);
+    // printf("high : %d\n", high);
+    // if (cur < index)
+    //     cur += (high - cur) / 2;
+    // else if (cur > index)
+    //     cur = cur / 2;
+    // else if (cur == index)
+    //     return (cur);
+    // printf("cur : %d\n", cur);
+    // printf("high : %d\n", high);
+    // if (cur < index)
+    //     cur += (high - cur) / 2;
+    // else if (cur > index)
+    //     cur = cur / 2;
+    // else if (cur == index)
+    //     return (cur);
+    while (low != index)
+    {
+        printf("cur: %d\n", low);
+        if (low < index)
+            low += (high - low) / 2;
+        else if (low > index)
+        {
+            high = low;
+            low = low / 2;
+            printf("high: %d\n", high);
+        }
+        else if (low == index)
+            return low;
+    }
+    return (-1);
+}
